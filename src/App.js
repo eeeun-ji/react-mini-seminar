@@ -1,24 +1,27 @@
+import React, { useState, useCallback } from 'react';
 import logo from './logo.svg';
+import "antd/dist/antd.css";
 import './App.css';
 
+import {Layout} from "antd";
+import BodyArea from './components/BodyArea';
+import Header from './components/Header';
+import Footer from './components/Footer';
+
 function App() {
+  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+  const myFunction = useCallback (() => {
+    setText("Hi Hello~!");
+  },[]);
+   //함수가 재할당 되지 않는다., 리랜더링 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Header text={text} callback={myFunction}/>
+    <BodyArea />
+    <Footer />
+    </>
   );
 }
 
